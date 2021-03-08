@@ -45,7 +45,7 @@ http://www.templatemo.com/tm-466-cafe-house
             </div>
             <nav class="tm-nav">
               <ul>
-                <li><a href="index.html" class="active">Home</a></li>
+                <li><a class="nav-link" href="{{('home')}}">Home</a></li>
                 <li><a href="today-special.html">Today Special</a></li>
                 <li><a href="menu.html">Menu</a></li>
                 <li><a href="contact.html">Contact</a></li>

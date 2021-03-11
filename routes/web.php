@@ -7,6 +7,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\TodayspcController;
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,9 @@ Route::get('/news/{title}', [HomeController::class, 'news']);
 Route::get('/about-us', [HomeController::class, 'aboutus']);
 
 // 5. Route Resource
-Route::resource('/contact-us', ContactController::class, [
-    'only' => ['index']
-]);
+// Route::resource('/contact-us', ContactController::class, [
+//     'only' => ['index']
+// ]);
+Route::get('/todayspecial', [TodayspcController::class, 'index'])->name('todayspc');
+Route::get('/menu', [MenuController::class, 'index'])->name('menu');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');

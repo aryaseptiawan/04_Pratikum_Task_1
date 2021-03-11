@@ -9,8 +9,8 @@
 Cafe House Template
 http://www.templatemo.com/tm-466-cafe-house
 -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+  <link href={{asset('http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700') }}rel='stylesheet' type='text/css'>
+  <link href={{asset('http://fonts.googleapis.com/css?family=Damion') }} rel='stylesheet' type='text/css'>
   <link href={{ asset('css/bootstrap.min.css') }} rel="stylesheet">
   <link href={{ asset('css/font-awesome.min.css') }} rel="stylesheet">
   <link href={{ asset('css/templatemo-style.css') }} rel="stylesheet">
@@ -32,6 +32,7 @@ http://www.templatemo.com/tm-466-cafe-house
       <div class="loader-section section-right"></div>
     </div>
     <!-- End Preloader -->
+    {{-- potong --}}
     <div class="tm-top-header">
       <div class="container">
         <div class="row">
@@ -41,14 +42,17 @@ http://www.templatemo.com/tm-466-cafe-house
               <h1 class="tm-site-name tm-handwriting-font">Cafe House - Arya & Alvi</h1>
             </div>
             <div class="mobile-menu-icon">
-              <i class="fa fa-bars"></i>
+              <i class="fa fa-bars"></i>x
             </div>
             <nav class="tm-nav">
               <ul>
                 <li><a class="nav-link" href="{{('home')}}">Home</a></li>
-                <li><a href="today-special.html">Today Special</a></li>
-                <li><a href="menu.html">Menu</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li href="nav-link">
+                  <a href="{{route('todayspc')}}">Today Special</a></li>
+                  <li href="nav-link">
+                    <a href="{{route('menu')}}">Menu</a></li>
+                    <li href="nav-link">
+                      <a href="{{route('contact')}}">Contact</a></li>
               </ul>
             </nav>   
           </div>           
@@ -71,6 +75,7 @@ http://www.templatemo.com/tm-466-cafe-house
         <img src={{ asset('img/table-set.png')}} alt="Table Set" class="tm-table-set img-responsive">             
       </div>      
     </section> 
+    @yield('content')
     <footer>
       <div class="tm-black-bg">
         <div class="container">
@@ -118,88 +123,3 @@ http://www.templatemo.com/tm-466-cafe-house
 
  </body>
  </html>
-
-
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'PRATIKUM2') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'PRATIKUM2') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-                            
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-</body>
-</html>
